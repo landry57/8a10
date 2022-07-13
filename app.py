@@ -38,16 +38,16 @@ def upload_file():
         rows=request.form['rows']
         cols=request.form['cols']
         if 'file' not in request.files:
-            flash('FICHIER REQUIS')
+            flash('FICHIER REQUIS','error')
             return redirect(request.url)
         file = request.files['file']
         if rows =="":
-             flash('AJOUTER LE NOMBRE DE LINE DU FICHIER')
+             flash('AJOUTER LE NOMBRE DE LINE DU FICHIER','error')
 
         if cols =="":
              flash('AJOUTER LA POSITION DE LA COLONNE OU SE TROUVENT LES NUMEROS')             
         if file.filename == '':
-            flash('FICHIER REQUIS')
+            flash('FICHIER REQUIS','error')
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
@@ -61,7 +61,9 @@ def upload_file():
             #sheet_obj.close()
   
            # wb_obj.save()
-        
+           
+            flash('Fichier traité avec succès', 'success')  
+            flash('https://p8a10.herokuapp.com/uploads/'+filename, 'upload')  
             return redirect(url_for('index', name='/uploads/'+filename))
     return redirect(url_for('index')) 
 
