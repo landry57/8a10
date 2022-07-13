@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+
+        {% with messages=get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p class="alert alert-error">{{ message|safe }}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+    </div>
+
+
+
+    <div class="col-md-4">
+    </div>
+
+</div>
+<div class="row">
+
+    <div class="col-md-4">
+    </div>
+
+    <div class="col-md-4 mt-5" id="myForm">
+        <h3>PASSEZ DE 8 à 10 CHIFFRES</h3>
+        <form enctype="multipart/form-data" action="/send" method="post">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Votre fiche excel</label>
+                <input type="file" class="form-control" name="file">
+
+            </div>
+            <div class="form-group">
+                <label>Nombre de lines</label>
+                <input type="number" class="form-control" name="rows">
+                <label>Position de la colonne contact</label>
+                <input type="number" class="form-control" name="cols">
+            </div>
+            <div class="col-md-12  text-right">
+            
+
+                <button type="submit" class="btn btn-primary text-right">Soumettre</button>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>
+{% endblock %}
